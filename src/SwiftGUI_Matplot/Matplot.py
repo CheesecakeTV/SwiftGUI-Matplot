@@ -1,5 +1,6 @@
 import tkinter as tk
 import SwiftGUI as sg
+import matplotlib.lines
 from SwiftGUI.Compat import Self
 from matplotlib.figure import Figure
 from typing import Hashable, Any
@@ -54,6 +55,9 @@ class Matplot(sg.BaseWidget):
             borderwidth = None,
             bordercolor = None,
             title = None,
+            spine_color = None,
+            tick_color = None,
+            text_color = None,
         )
 
         self._navbar = self.defaults.single("navigation_bar", navigation_bar)
@@ -97,6 +101,20 @@ class Matplot(sg.BaseWidget):
                     return
                 self.axes.set_title(new_val)
 
+            case "spine_color":
+                new_val = self.defaults.single("text_color", new_val)
+                self.axes.spines["bottom"].set_color(new_val)
+                self.axes.spines["top"].set_color(new_val)
+                self.axes.spines["left"].set_color(new_val)
+                self.axes.spines["right"].set_color(new_val)
+            case "tick_color":
+                new_val = self.defaults.single("text_color", new_val)
+                self.axes.tick_params(colors=new_val)
+
+            case "text_color":
+                self.axes.xaxis.label.set_color(new_val)
+                self.axes.yaxis.label.set_color(new_val)
+
             case _:
                 return super()._update_special_key(key, new_val)
 
@@ -108,3 +126,27 @@ class Matplot(sg.BaseWidget):
         if self._navbar:
             NavigationToolbar2Tk(self._figure_canvas)
 
+
+    def plot(self, xs, ys, *args, color= None, **kwargs) -> list[matplotlib.lines.Line2D]:
+        """
+        Call axes.plot with some global options applied
+        :return:
+        """
+        kwargs["color"] = color
+
+        self.defaults.apply(kwargs)
+
+        return self.axes.plot(xs, ys, *args, **kwargs)
+
+    def grid(self, color= None, **kwargs):
+        """
+        Call axes.grid with some global options applied
+        :param color:
+        :param kwargs:
+        :return:
+        """
+        kwargs["color"] = self.defaults.single("text_color", color)
+
+        self.defaults.apply(kwargs)
+
+        return self.axes.grid(**kwargs)

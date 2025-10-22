@@ -4,7 +4,7 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-sg.Themes.FourColors.Emerald()
+sg.Themes.FourColors.DeepSea()
 
 #my_figure = Figure((6,4), dpi=100, )
 
@@ -24,7 +24,10 @@ layout = [
 
 w = sg.Window(layout)
 
-my_matplot.axes.plot(x, y)
+my_matplot.plot(x, y)
+my_matplot.grid()
+
+my_matplot.axes.legend(["Test"])
 
 for e,v in w:
     ...
