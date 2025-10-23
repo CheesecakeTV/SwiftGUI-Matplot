@@ -257,3 +257,8 @@ class Matplot(sg.BaseWidget):
 
         self.refresh()
         return self
+
+    def update(self, **kwargs) -> Self:
+        super().update(**kwargs)
+        self.refresh()
+        return self
