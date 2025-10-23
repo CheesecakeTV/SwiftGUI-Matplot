@@ -1,7 +1,4 @@
 
-# WIP
-Not useable yet!
-
 # SwiftGUI-Matplot
 Integrate matplotlib-figures into your SwiftGUI layout.
 
