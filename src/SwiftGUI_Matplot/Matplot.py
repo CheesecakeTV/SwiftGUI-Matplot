@@ -140,7 +140,7 @@ class Matplot(sg.BaseWidget):
                     return
                 self.axes.set_title(
                     new_val,
-                    color= self.defaults.single("text_color", self._text_color)
+                    color= self.defaults.single("text_color", self._text_color, default= "black")
                 )
 
             case "spine_color":

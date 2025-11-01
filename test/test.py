@@ -6,8 +6,9 @@ import SwiftGUI_Matplot as sgm
 from matplotlib.figure import Figure
 import numpy as np
 
-
-sg.Themes.FourColors.DeepSea()
+#sg.Themes.FourColors.DeepSea()
+sg.Examples.preview_all_elements()
+exit()
 
 my_figure = Figure((6,4), dpi=100)
 
