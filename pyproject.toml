@@ -1,8 +1,8 @@
 [project]
-name = "SwiftGUI-Matplot"
-version = "0.0.1"
+name = "SwiftGUI_Matplot"
+version = "0.1.3"
 packages = [
-    { include = "SwiftGUI-Matplot", from = "src" }
+    { include = "SwiftGUI_Matplot", from = "src" }
 ]
 authors = [
   { name="Eric aka CheesecakeTV", email="cheesecaketv53+pypi@gmail.com" },
